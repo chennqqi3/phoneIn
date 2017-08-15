@@ -1,4 +1,4 @@
-package com.chch.urls;
+package com.chch.urls.unfinished;
 
 import java.io.IOException;
 import java.net.URLConnection;
@@ -6,32 +6,31 @@ import java.net.URLConnection;
 import com.chch.interfaces.HttpRequest;
 import com.chch.interfaces.Judge;
 import com.chch.interfaces.impl.HttpRequestImpl;
+import com.chch.tools.GenerateMD5;
+import com.chch.tools.GenerateRandomString;
 
 /**
  * @author pku-03
  *
  */
-public class Iqiyi implements Judge{
+public class Baidu implements Judge {
 
 	@Override
 	public String getWebString(String phoneNum) throws IOException {
 		HttpRequest http = new HttpRequestImpl();
-		//url
-		String url = "http://passport.iqiyi.com/apis/user/check_account.action";
-		//参数列表，直接用&进行拼接
-		String param = "account=" + phoneNum + "&agenttype=1&area_code=86&callback=window.Q.__callbacks__.cbi0gphv&t=";
-		//不需要设置Header信息，直接设置为null
+		String url = "https://passport.baidu.com/v2/";
+		String param = "regphonecheck&token=&tpl=&apiver=v3&tt=&phone=15116954388&countrycode=&gid=&exchange=0&isexchangeable=1&callback=" + GenerateMD5.getMD5(phoneNum);
 		URLConnection conn = null;
-		String result = http.post(url,param,conn);
+		String result = http.get(url, param, conn);
 		System.out.println("getWebString:" + phoneNum + " "+ result);
 		return result;
 	}
 
 	@Override
 	public boolean isRegister(String phoneNum) throws IOException {
-		Judge judge = new Iqiyi();
+		Judge judge = new Baidu();
 		String result = judge.getWebString(phoneNum);
-		if(result.indexOf("true") != -1)//可以找到
+		if(result.indexOf("手机号已被注册，请直接登录或更换手机号注册") != -1)//可以找到
 			return true;
 		return false;
 	}

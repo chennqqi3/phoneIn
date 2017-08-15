@@ -7,19 +7,15 @@ import com.chch.interfaces.HttpRequest;
 import com.chch.interfaces.Judge;
 import com.chch.interfaces.impl.HttpRequestImpl;
 
-/**
- * @author pku-03
- *
- */
-public class Renren implements Judge{
+public class Tuniu implements Judge {
 
 	@Override
 	public String getWebString(String phoneNum) {
 		HttpRequest http = new HttpRequestImpl();
 		//url
-		String url = "http://reg.renren.com/AjaxRegisterAuth.do";
+		String url = "https://passport.tuniu.com/register/isPhoneAvailable";
 		//参数列表，直接用&进行拼接
-		String param = "authType=email&stage=3&t=1502351153242&value="+ phoneNum +"&requestToken=&_rtk=cbe7ac30";
+		String param = "intlCode=0086&&tel=" + phoneNum;
 		//不需要设置Header信息，直接设置为null
 		URLConnection conn = null;
 		String result = http.post(url,param,conn);
@@ -29,12 +25,12 @@ public class Renren implements Judge{
 
 	@Override
 	public boolean isRegister(String phoneNum) throws IOException {
-		Judge judge = new Renren();
+		Judge judge = new Tuniu();
 		String result = judge.getWebString(phoneNum);
-		if("手机号已经绑定，不能注册".equals(result))
-			return true;
-		else 
+		if(result.indexOf("true") != -1)
 			return false;
+		return true;
 	}
-	
+
+
 }

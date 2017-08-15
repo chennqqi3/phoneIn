@@ -1,4 +1,4 @@
-package com.chch.urls;
+package com.chch.urls.unfinished;
 
 import java.io.IOException;
 import java.net.URLConnection;
@@ -7,11 +7,7 @@ import com.chch.interfaces.HttpRequest;
 import com.chch.interfaces.Judge;
 import com.chch.interfaces.impl.HttpRequestImpl;
 
-/**
- * @author pku-03
- *
- */
-public class QQ implements Judge{
+public class Dangdang implements Judge{
 
 	@Override
 	public String getWebString(String phoneNum) throws IOException {
@@ -24,21 +20,22 @@ public class QQ implements Judge{
 		 * 2.设置header里的其他属性
 		 * 
 		 */
-		String url = "https://aq.qq.com/cn2/reset_pwd/pc/pc_reset_pwd_get_uin_by_input_ajax";
-		String param = "aq_account=" + phoneNum + "&qq_txwb_user_choice=0&_=1501744594284";
+		String url = "https://login.dangdang.com/p/emailandmobile_check.php";
+		String param = "usermobile=" + phoneNum + "&t=&jsoncallback=jsonp1501811869099";
 		//设置header，不需要设置
 		URLConnection connection = null;
-		String result = http.post(url,param,connection);
+		String result = http.get(url,param,connection);
 		System.out.println("getWebString:" + phoneNum + " "+ result);
 		return result;
 	}
 
 	@Override
 	public boolean isRegister(String phoneNum) throws IOException {
-		Judge judge = new QQ();
+		Judge judge = new Dangdang();
 		String result = judge.getWebString(phoneNum);
-		if(result.indexOf("0") != -1)
+		if(result.indexOf("\"type\":1") != -1)
 			return true;
 		return false;
 	}
+
 }

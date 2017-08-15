@@ -7,6 +7,10 @@ import com.chch.interfaces.HttpRequest;
 import com.chch.interfaces.Judge;
 import com.chch.interfaces.impl.HttpRequestImpl;
 
+/**
+ * @author pku-03
+ *
+ */
 public class Sohu implements Judge {
 
 	@Override
