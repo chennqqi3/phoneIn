@@ -1,7 +1,5 @@
-package com.chch.zunitTest;
-/*
- * 加入使用反射来批量化调用
- */
+package com.chch.info;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,9 +7,9 @@ import java.util.Map;
 
 import com.chch.interfaces.Judge;
 
-public class AllTest {
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException{
-		
+public class IsRegister {
+	public IsRegister(String phoneNum) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		// TODO Auto-generated constructor stub
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("Acfun", "A站");
 		map.put("Dajie", "大街网");
@@ -60,7 +58,8 @@ public class AllTest {
 			Object o = myclass.newInstance();
 			Judge x = (Judge)o;
 			//System.out.println(test.split("\\.")[3] + "\t-->" + x.isRegister("13805044961"));
-			System.out.println(map.get(test.split("\\.")[3]) + ":" + x.isRegister("13719000885"));
+			//System.out.println(map.get(test.split("\\.")[3]) + ":" + x.isRegister("13719000885"));
+			System.out.println(map.get(test.split("\\.")[3]) + ":" + x.isRegister(phoneNum));
 		}
 	}
 }

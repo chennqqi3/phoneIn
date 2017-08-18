@@ -1,7 +1,10 @@
 package com.chch.zunitTest;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+
 import com.chch.interfaces.Judge;
 
 
@@ -9,14 +12,21 @@ public class AllTestPart {
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException{
 		
 		LinkedList<String> testList = new LinkedList<>();
-		testList.add("com.chch.urls.Tianya");
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("Acfun", "A站");
+		map.put("Dajie", "大街网");
+		map.put("Jd", "京东");
+		
+		
+//		testList.add("com.chch.urls.Jd");
+		testList.add("com.chch.urls.unfinished.Baidu");
 		
 		for(String test:testList)
 		{
 			Class myclass = Class.forName(test);
 			Object o = myclass.newInstance();
 			Judge x = (Judge)o;
-			System.out.println(test + "\t-->" + x.isRegister("18811076523"));
+			System.out.println(map.get("Jd") + "\t-->" + x.isRegister("15116954388"));
 		}
 	}
 }

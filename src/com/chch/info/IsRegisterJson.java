@@ -1,17 +1,16 @@
-package com.chch.zunitTest;
-/*
- * 加入使用反射来批量化调用
- */
+package com.chch.info;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 import com.chch.interfaces.Judge;
+import com.google.gson.JsonObject;
 
-public class AllTest {
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException{
-		
+public class IsRegisterJson {
+	public static String get(String phoneNum) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		// TODO Auto-generated constructor stub
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("Acfun", "A站");
 		map.put("Dajie", "大街网");
@@ -53,14 +52,20 @@ public class AllTest {
 		testList.add("com.chch.urls.Zhonghuayingcai");
 		testList.add("com.chch.urls.Ziroom");
 		
-		
+		JsonObject js = new JsonObject();
 		for(String test:testList)
 		{
 			Class<?> myclass = Class.forName(test);
 			Object o = myclass.newInstance();
 			Judge x = (Judge)o;
 			//System.out.println(test.split("\\.")[3] + "\t-->" + x.isRegister("13805044961"));
-			System.out.println(map.get(test.split("\\.")[3]) + ":" + x.isRegister("13719000885"));
+			//System.out.println(map.get(test.split("\\.")[3]) + ":" + x.isRegister("13719000885"));
+			//System.out.println(map.get(test.split("\\.")[3]) + ":" + x.isRegister(phoneNum));
+			String name = map.get(test.split("\\.")[3]);
+			Boolean isRegister = x.isRegister(phoneNum);
+			js.addProperty(name, isRegister);
 		}
+		
+		return js.toString();
 	}
 }

@@ -9,7 +9,7 @@ import java.util.Map;
 
 import com.chch.interfaces.Judge;
 
-public class AllTest {
+public class AllTestJson {
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException{
 		
 		Map<String, String> map = new HashMap<String,String>();
