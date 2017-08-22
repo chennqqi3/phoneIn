@@ -19,14 +19,17 @@ public class AllTestPart {
 		
 		
 //		testList.add("com.chch.urls.Jd");
-		testList.add("com.chch.urls.unfinished.Baidu");
-		
+//		testList.add("com.chch.urls.unfinished.F58");
+//		testList.add("com.chch.urls.Wubatongcheng");
+//		testList.add("com.chch.urls.unfinished.Baidu3");
+		testList.add("com.chch.urls.Renrendai");
 		for(String test:testList)
 		{
 			Class myclass = Class.forName(test);
 			Object o = myclass.newInstance();
 			Judge x = (Judge)o;
-			System.out.println(map.get("Jd") + "\t-->" + x.isRegister("15116954388"));
+//			System.out.println(map.get("Jd") + "\t-->" + x.isRegister("15116954388"));
+			System.out.println(test + "\t-->" + x.isRegister("15116954388"));
 		}
 	}
 }

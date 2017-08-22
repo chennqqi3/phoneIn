@@ -20,7 +20,11 @@ public class Baidu implements Judge {
 	public String getWebString(String phoneNum) throws IOException {
 		HttpRequest http = new HttpRequestImpl();
 		String url = "https://passport.baidu.com/v2/";
-		String param = "regphonecheck&token=&tpl=&apiver=v3&tt=&phone=" + phoneNum +"&countrycode=&gid=&exchange=&isexchangeable=1&callback=" + GenerateMD5.getMD5(phoneNum);
+		String param = "regphonecheck&token=97d1e5fe2fe8c982ee5de77f842b1440&tpl=&apiver=v3"
+				+ "&tt=" + System.currentTimeMillis() 
+		+"&phone=" + phoneNum 
+		+"&countrycode=&gid=&exchange=0&isexchangeable=1&callback=" 
+		+ GenerateMD5.getMD5(phoneNum);
 		URL realUrl = new URL(url + "?" + param);
 		URLConnection connection = realUrl.openConnection();
 		connection.setRequestProperty("accept", "*/*");
