@@ -21,8 +21,11 @@ public class AllTestPart {
 //		testList.add("com.chch.urls.Jd");
 //		testList.add("com.chch.urls.unfinished.F58");
 //		testList.add("com.chch.urls.Wubatongcheng");
-//		testList.add("com.chch.urls.unfinished.Baidu3");
-		testList.add("com.chch.urls.Renrendai");
+//		testList.add("com.chch.urls.Baidu");
+//		testList.add("com.chch.urls.unfinished.YY");
+//		testList.add("com.chch.urls.Chushou");
+//		testList.add("com.chch.urls.Fangtianxia");
+		testList.add("com.chch.urls.Kuwo");
 		for(String test:testList)
 		{
 			Class myclass = Class.forName(test);

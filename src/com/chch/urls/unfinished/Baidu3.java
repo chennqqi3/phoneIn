@@ -11,6 +11,7 @@ import java.util.Set;
 import com.chch.interfaces.Judge;
 import com.chch.tools.GenerateMD5;
 import com.chch.tools.GenerateRandomString;
+import com.chch.urls.Baidu;
 
 public class Baidu3 implements Judge{
 
